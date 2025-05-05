@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Access Check</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transition: all .3s ease;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Welcome to Our Website</h1>
+  <button onclick="startInteraction()">Start</button>
+</div>
+
+<script>
+  function getValidInput(promptText, defaultValue = '') {
+    let input = '';
+    do {
+      input = prompt(promptText, defaultValue);
+    } while (!input || input.trim() === '');
+    return input.trim();
+  }
+
+  function getValidAge(promptText, defaultValue = '') {
+    let age;
+    do {
+      const input = prompt(promptText, defaultValue);
+      age = Number(input);
+      if (!isNaN(age) && input.trim() !== '') return age;
+    } while (true);
+  }
+
+  function startInteraction() {
+    const name = getValidInput('Enter your name:');
+    const age = getValidAge('Enter your age:');
+
+    if (age < 18) {
+      alert('You are not allowed to visit this website');
+    } else if (age <= 22) {
+      const isSure = confirm('Are you sure you want to continue?');
+      if (isSure) {
+        alert(`Welcome, ${name}`);
+      } else {
+        alert('You are not allowed to visit this website');
+      }
+    } else {
+      alert(`Welcome, ${name}`);
+    }
+  }
+</script>
+</body>
+</html>
